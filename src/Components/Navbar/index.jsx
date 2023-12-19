@@ -2,104 +2,54 @@ import {NavLink} from 'react-router-dom'
 
 const Navbar = ()=>{
     const activeStyle ='underline underline-offset-4'
+
+    const menuLeft = [
+        {to:'/',text:'Skapir',className:'font-semibold text-xl'},
+        {to:'/all',text:'All',className:''},
+        {to:'/clothes',text:'Clothes',className:''},
+        {to:'/electronics',text:'Electronics',className:''},
+        {to:'/furnitures',text:'Furnitures',className:''},
+        {to:'/toys',text:'Toys',className:''},
+        {to:'/others',text:'Others',className:''},
+    ];
+
+    const menuRigth = [
+        {to:'/email',text :'@SkapirTec.com' , className:'text-black/60'},
+        {to:'/my-orders',text:'My Orders',className:''},
+        {to:'/my-account',text:'My Account',className:''},
+        {to:'/signin',text:'Sign In',className:''},
+        {to:'/shoppcar',text:'🛒0',className:''},
+    ]
+
     return(
-        <nav className='flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light'>
+        <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light'>
             <ul className='flex items-center gap-3'>
-                <li className='font-semibold text-lg'>
-                    <NavLink to='/'>
-                        Shopi
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                    to='/'
-                    className={({isActive})=>
-                    isActive ? activeStyle : undefined
-                    }>
-                        All
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                    to='/clothes'
-                    className={({isActive})=>
-                    isActive ? activeStyle : undefined
-                    }>
-                        Clothes
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                    to='/electronics'
-                    className={({isActive})=>
-                    isActive ? activeStyle : undefined
-                    }>
-                        Electronics
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                    to='/furnitures'
-                    className={({isActive})=>
-                    isActive ? activeStyle : undefined
-                    }>
-                        Furnitures
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                    to='/toys'
-                    className={({isActive})=>
-                    isActive ? activeStyle : undefined
-                    }>
-                        Toys
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                    to='/others'
-                    className={({isActive})=>
-                    isActive ? activeStyle : undefined
-                    }>
-                        Others
-                    </NavLink>
-                </li>
+                {menuLeft.map((items,index)=>(
+                    <NavLink
+                        key={items.to}
+                        to={items.to}
+                        className={({isActive})=>
+                            isActive && index !==0
+                            ? `${items.className} ${activeStyle}`
+                            : items.className}
+                    >
+                    {items.text}
+                   </NavLink> 
+                ))}
             </ul>
             <ul className='flex items-center gap-3'>
-                <li className='text-black/60'>
-                    @SkapirTec.com
-                </li>
-                <li>
-                    <NavLink 
-                    to='/my-orders'
-                    className={({isActive})=>
-                    isActive ? activeStyle : undefined
-                    }>
-                        My Orders
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                    to='/my-account'
-                    className={({isActive})=>
-                    isActive ? activeStyle : undefined
-                    }>
-                        My Account
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                    to='/signin'
-                    className={({isActive})=>
-                    isActive ? activeStyle : undefined
-                    }>
-                        Sign In
-                    </NavLink>
-                </li>
-                <li>
-                    🛒0
-                </li>
-                
+                {menuRigth.map((items,index)=>(
+                        <NavLink
+                            key={items.to}
+                            to={items.to}
+                            className={({isActive})=>
+                                isActive && index !==0
+                                ? `${items.className} ${activeStyle}`
+                                : items.className}
+                        >
+                        {items.text}
+                    </NavLink> 
+                    ))}
             </ul>
         </nav>
     )
